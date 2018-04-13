@@ -66,7 +66,12 @@ struct Interpreter {
     
     func execute(_ s: String) throws -> Int {
         
-        return try expression.parse(Substring(s)).0
+        switch expression.parse(Substring(s)) {
+        case let .done (_, out):
+            return out
+        case let .fail(e):
+            throw e
+        }
     }
 }
 

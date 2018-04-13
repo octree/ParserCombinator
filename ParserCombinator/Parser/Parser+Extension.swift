@@ -15,9 +15,20 @@ public extension Parser {
     public static var fail: Parser<T> {
         return Parser<T> {
             _ in
-            throw ParserError.any
+            return .fail(ParserError.any)
         }
     }
+    
+//    public var lookAhead: Parser<T> {
+//
+//        return Parser<T> {
+//            do {
+//
+//            } catch {
+//
+//            }
+//        }
+//    }
     
 //    many, maybe empty
     public var many: Parser<[T]> {
@@ -28,19 +39,15 @@ public extension Parser {
             var result: [T] = []
             var remainder = input
             
-            while (true) {
+            while case let .done(r, out) = self.parse(remainder) {
                 
-                do {
-                    let (t, r) = try self.parse(remainder)
-                    result.append(t)
-                    remainder = r
-                } catch {
-                    break
-                }
+                result.append(out)
+                remainder = r
             }
-            return (result, remainder)
+            return .done(remainder, result)
         }
     }
+    
     
 // many, as leat 1
     
@@ -64,13 +71,18 @@ public extension Parser {
     public var optional: Parser<T?> {
         return Parser<T?> {
             
-            do {
-                let rt = try self.parse($0)
-                return (rt.0, rt.1)
-            } catch {
-                return (nil, $0)
+            switch self.parse($0) {
+            case let .done(remainder, out):
+                return .done(remainder, out)
+            case .fail(_):
+                return .done($0, nil)
             }
         }
+    }
+    
+    public func otherwise(_ v: T) -> Parser<T> {
+        
+        return self <|> .unit(v)
     }
     
 //    差集
@@ -78,12 +90,10 @@ public extension Parser {
         
         return Parser<T> {
             
-            do {
-                try _ = other.parse($0)
-                throw ParserError.notMatch
-            } catch {
-                return try self.parse($0)
+            if case .done(_) = other.parse($0) {
+                return .fail(ParserError.notMatch)
             }
+            return self.parse($0)
         }
     }
     
@@ -100,11 +110,13 @@ public extension Parser {
             var remainder = $0
             for _ in 0 ..< n {
                 
-                let (t, r) = try self.parse(remainder)
+                guard case let .done(r, out) = self.parse($0) else {
+                    return .fail(ParserError.notMatch)
+                }
                 remainder = r
-                result.append(t)
+                result.append(out)
             }
-            return (result, remainder)
+            return .done(remainder, result)
         }
     }
     
@@ -177,6 +189,7 @@ public extension Parser {
         return self >>- f
     }
     
+    
     public func chainr1(op: Parser<(T, T) -> T>) -> Parser<T> {
         
         func scan() -> Parser<T> {
@@ -196,6 +209,7 @@ public extension Parser {
         
         return scan()
     }
+    
 }
 
 

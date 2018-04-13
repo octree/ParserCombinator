@@ -11,7 +11,7 @@ import Foundation
 public struct Parser<T> {
     typealias Stream = Substring
     
-    let parse: (Stream) throws -> (T, Stream)
+    let parse: (Stream) -> Reply<Stream, T>
 }
 
 // Functor
@@ -20,7 +20,7 @@ public extension Parser {
     
     public static func unit(_ x: T) -> Parser<T> {
         
-        return Parser { (x, $0) }
+        return Parser { .done($0, x) }
     }
     
     public static var ignore: Parser<()> {
@@ -29,26 +29,28 @@ public extension Parser {
     }
     
 //    Functor
-    public func map<U>(_ f: @escaping (T) throws -> U) -> Parser<U> {
+    public func map<U>(_ f: @escaping (T) -> U) -> Parser<U> {
         
-        return Parser<U> {
-            let result = try self.parse($0)
-            return try (f(result.0), result.1)
-        }
+        return Parser<U> { self.parse($0).map(f) }
     }
     
     
 //    Monad
-    public func then<U>(_ f: @escaping (T) throws -> Parser<U>) -> Parser<U> {
+    public func then<U>(_ f: @escaping (T) -> Parser<U>) -> Parser<U> {
         
         return Parser<U> {
-            let result = try self.parse($0)
-            return try f(result.0).parse(result.1)
+            
+            switch self.parse($0) {
+            case let .done(remainder, out):
+                return f(out).parse(remainder)
+            case let .fail(e):
+                return .fail(e)
+            }
         }
     }
     
 //    Applicative
-    public func apply<U>(_ mf: Parser<(T) throws -> U>) -> Parser<U> {
+    public func apply<U>(_ mf: Parser<(T) -> U>) -> Parser<U> {
         
         return mf.then(map)
     }

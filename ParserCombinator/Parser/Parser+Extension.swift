@@ -19,16 +19,19 @@ public extension Parser {
         }
     }
     
-//    public var lookAhead: Parser<T> {
-//
-//        return Parser<T> {
-//            do {
-//
-//            } catch {
-//
-//            }
-//        }
-//    }
+    ///  执行 parse，但是不会改变 input
+    public var lookAhead: Parser<T> {
+
+        return Parser<T> {
+            let reply = self.parse($0)
+            switch reply {
+            case let .done(_, out):
+                return .done($0, out)
+            case .fail:
+                return reply
+            }
+        }
+    }
     
 //    many, maybe empty
     public var many: Parser<[T]> {

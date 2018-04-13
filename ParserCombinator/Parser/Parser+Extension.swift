@@ -97,14 +97,35 @@ public extension Parser {
         }
     }
     
-    func sep<U>(by other: Parser<U>) -> Parser<[T]> {
+    public func sep<U>(by other: Parser<U>) -> Parser<[T]> {
         
         return sep1(by: other) <|> .unit([])
     }
     
-    func sep1<U>(by other: Parser<U>) -> Parser<[T]> {
+    public func sep1<U>(by other: Parser<U>) -> Parser<[T]> {
         
-        return curry({ $0 + [$1] }) <^> (self <* other).many <*> self
+        return curry({ [$0] + $1 }) <^> self <*>  (other *> self).many
+    }
+    
+//    EBNF: (p (sep p)* sep?)?
+    public func sepEnd<U>(by other: Parser<U>) -> Parser<[T]> {
+        
+        return sep1(by: other) <|> .unit([])
+    }
+//    EBNF: p (sep p)* sep?
+    public func sepEnd1<U>(by other: Parser<U>) -> Parser<[T]> {
+        
+        return sep1(by: other) <* other.optional
+    }
+    
+    public func many<U>(till other: Parser<U>) -> Parser<[T]> {
+        
+        return difference(other).many
+    }
+    
+    public func many1<U>(till other: Parser<U>) -> Parser<[T]> {
+        
+        return difference(other).many1
     }
 }
 

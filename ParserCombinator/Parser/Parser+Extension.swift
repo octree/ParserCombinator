@@ -119,12 +119,24 @@ public extension Parser {
         return curry({ [$0] + $1 }) <^> self <*>  (other *> self).many
     }
     
-//    EBNF: (p (sep p)* sep?)?
+    public func end<U>(by other: Parser<U>) -> Parser<[T]> {
+        
+        return many <* other
+    }
+    
+    public func end1<U>(by other: Parser<U>) -> Parser<[T]> {
+        
+        return many1 <* other
+    }
+    
+///   separated and optionally ended by sep
+///   EBNF: (p (sep p)* sep?)?
     public func sepEnd<U>(by other: Parser<U>) -> Parser<[T]> {
         
         return sep1(by: other) <|> .unit([])
     }
-//    EBNF: p (sep p)* sep?
+///   separated and optionally ended by sep
+///   EBNF: p (sep p)* sep?
     public func sepEnd1<U>(by other: Parser<U>) -> Parser<[T]> {
         
         return sep1(by: other) <* other.optional
@@ -143,6 +155,46 @@ public extension Parser {
     public func between<U, V>(open: Parser<U>, close: Parser<V>) -> Parser<T> {
         
         return open *> self <* close
+    }
+    
+    
+    /// self (op self)*
+    /// 可以用来消除左递归
+    ///
+    /// - Parameter op: op parser
+    /// - Returns: parser
+    public func chainl1(op: Parser<(T, T) -> T>) -> Parser<T> {
+
+        func f(_ lhs: T) -> Parser<T> {
+            
+            let parser = op >>- {
+                opf in
+                self >>- { rhs in f(opf(lhs, rhs)) }
+            }
+            return parser <|> .unit(lhs)
+        }
+        
+        return self >>- f
+    }
+    
+    public func chainr1(op: Parser<(T, T) -> T>) -> Parser<T> {
+        
+        func scan() -> Parser<T> {
+            
+            return self >>- f
+        }
+        
+        func f(_ lhs: T) -> Parser<T> {
+            
+            let parser: Parser<T> = op >>- { opf in
+                scan() >>- { rhs in
+                    return Parser<T>.unit(opf(lhs, rhs))
+                }
+            }
+            return parser <|> .unit(lhs)
+        }
+        
+        return scan()
     }
 }
 

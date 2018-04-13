@@ -28,21 +28,10 @@ let hyphen = character { $0 == "-" }
 let slash = character { $0 == "/" }
 
 
-func multiOrDivide(_ x: Int, _ others: [(Character, Int)]?) -> Int {
-    
-    return (others ?? []).reduce(x) {
-        
-        return $1.0 == "*" ? $0 * $1.1 : $0 / $1.1
-    }
-}
-
-func plusOrMinus(_ x: Int, _ others: [(Character, Int)]?) -> Int {
-    
-    return (others ?? []).reduce(x) {
-        
-        return $1.0 == "+" ? $0 + $1.1 : $0 - $1.1
-    }
-}
+let multiOp = { _ in { (x:Int, y: Int) in x * y }} <^> star
+let divOp = { _ in { (x:Int, y: Int) in x / y }} <^> slash
+let addOp = { _ in { (x:Int, y: Int) in x + y }} <^> plus
+let subOp = { _ in { (x:Int, y: Int) in x - y }} <^> hyphen
 
 let leftParentheses =  character { $0 == "(" }
 let rightParentheses =  character { $0 == ")" }
@@ -52,7 +41,7 @@ struct Interpreter {
     
     private var parentExpr: Parser<Int> {
         
-        return ({ _ in return self.expression } >>- leftParentheses) <* rightParentheses
+        return (leftParentheses >>- { _ in return self.expression })  <* rightParentheses
     }
     
     private var item: Parser<Int> {
@@ -61,15 +50,13 @@ struct Interpreter {
     }
     
     private var multiplicationAndDivision: Parser<Int> {
-        return curry(multiOrDivide)
-            <^> item
-            <*> ((star <|> slash).followed(by: item)).many1.optional
+        
+        return item.chainl1(op: multiOp <|> divOp )
     }
     
     private var additionAndSubtraction: Parser<Int> {
-        return curry(plusOrMinus)
-            <^> multiplicationAndDivision
-            <*> ((plus <|> hyphen).followed(by: multiplicationAndDivision)).many1.optional
+        
+        return multiplicationAndDivision.chainl1(op: addOp <|> subOp)
     }
     
     private var expression: Parser<Int> {

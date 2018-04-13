@@ -16,10 +16,10 @@ public func <^><A, B>(lhs: @escaping (A) throws -> B, rhs: Parser<A>) -> Parser<
 
 
 /// Monad
-/// a -> m b -> m a -> m b
-public func >>-<A, B>(lhs: @escaping (A) throws -> Parser<B>, rhs: Parser<A>) -> Parser<B> {
+///  m a -> (a -> m b) -> m b
+public func >>-<A, B>(lhs: Parser<A>, rhs: @escaping (A) throws -> Parser<B>) -> Parser<B> {
     
-    return rhs.then(lhs)
+    return lhs.then(rhs)
 }
 
 

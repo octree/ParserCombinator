@@ -97,6 +97,15 @@ public extension Parser {
         }
     }
     
+    func sep<U>(by other: Parser<U>) -> Parser<[T]> {
+        
+        return sep1(by: other) <|> .unit([])
+    }
+    
+    func sep1<U>(by other: Parser<U>) -> Parser<[T]> {
+        
+        return curry({ $0 + [$1] }) <^> (self <* other).many <*> self
+    }
 }
 
 

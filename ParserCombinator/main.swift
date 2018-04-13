@@ -21,7 +21,7 @@ extension CharacterSet {
 }
 
 let digit = character(matching: { CharacterSet.decimalDigits.contains($0) })
-let integer = digit.many.map { Int(String($0))! }
+let integer = digit.many1.map { Int(String($0))! }
 let star = character { $0 == "*" }
 let plus = character { $0 == "+" }
 let hyphen = character { $0 == "-" }
@@ -47,14 +47,6 @@ func plusOrMinus(_ x: Int, _ others: [(Character, Int)]?) -> Int {
 let leftParentheses =  character { $0 == "(" }
 let rightParentheses =  character { $0 == ")" }
 
-extension Parser {
-    
-    func followed<U>(by other: Parser<U>) -> Parser<(T, U)> {
-        
-        return curry({ x, y in (x, y) }) <^> self <*> other
-    }
-}
-
 struct Interpreter {
     
     
@@ -71,13 +63,13 @@ struct Interpreter {
     private var multiplicationAndDivision: Parser<Int> {
         return curry(multiOrDivide)
             <^> item
-            <*> ((star <|> slash).followed(by: item)).many.optional
+            <*> ((star <|> slash).followed(by: item)).many1.optional
     }
     
     private var additionAndSubtraction: Parser<Int> {
         return curry(plusOrMinus)
             <^> multiplicationAndDivision
-            <*> ((plus <|> hyphen).followed(by: multiplicationAndDivision)).many.optional
+            <*> ((plus <|> hyphen).followed(by: multiplicationAndDivision)).many1.optional
     }
     
     private var expression: Parser<Int> {

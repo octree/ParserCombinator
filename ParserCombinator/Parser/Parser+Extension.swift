@@ -19,7 +19,7 @@ public extension Parser {
         }
     }
     
-//    at leat 1
+//    many, maybe empty
     public var many: Parser<[T]> {
         
         return Parser<[T]> {
@@ -38,13 +38,15 @@ public extension Parser {
                     break
                 }
             }
-            
-            if (result.count == 0) {
-                throw ParserError.notMatch
-            }
-            
             return (result, remainder)
         }
+    }
+    
+// many, as leat 1
+    
+    public var many1: Parser<[T]> {
+        
+        return curry({ x, y in [x] + y }) <^> self <*> many
     }
     
 //    optional
@@ -60,7 +62,7 @@ public extension Parser {
         }
     }
     
-//    差集合
+//    差集
     public func difference<U>(_ other: Parser<U>) -> Parser<T> {
         
         return Parser<T> {
@@ -74,4 +76,11 @@ public extension Parser {
         }
     }
     
+    public func followed<U>(by other: Parser<U>) -> Parser<(T, U)> {
+        
+        return curry({ x, y in (x, y) }) <^> self <*> other
+    }
+    
 }
+
+

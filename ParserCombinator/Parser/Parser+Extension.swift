@@ -81,6 +81,22 @@ public extension Parser {
         return curry({ x, y in (x, y) }) <^> self <*> other
     }
     
+    public func `repeat`(_ n: Int) -> Parser<[T]> {
+        
+        return Parser<[T]> {
+            
+            var result = [T]()
+            var remainder = $0
+            for _ in 0 ..< n {
+                
+                let (t, r) = try self.parse(remainder)
+                remainder = r
+                result.append(t)
+            }
+            return (result, remainder)
+        }
+    }
+    
 }
 
 

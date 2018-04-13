@@ -113,7 +113,7 @@ public extension Parser {
             var remainder = $0
             for _ in 0 ..< n {
                 
-                guard case let .done(r, out) = self.parse($0) else {
+                guard case let .done(r, out) = self.parse(remainder) else {
                     return .fail(ParserError.notMatch)
                 }
                 remainder = r

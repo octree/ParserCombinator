@@ -49,6 +49,16 @@ public extension Parser {
         return curry({ x, y in [x] + y }) <^> self <*> many
     }
     
+    public var skipMany: Parser<()> {
+        
+        return many *> .ignore
+    }
+    
+    public var skipMany1: Parser<()> {
+        
+        return many1 *> .ignore
+    }
+    
 //    optional
     public var optional: Parser<T?> {
         return Parser<T?> {

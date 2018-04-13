@@ -23,6 +23,11 @@ public extension Parser {
         return Parser { (x, $0) }
     }
     
+    public static var ignore: Parser<()> {
+        
+        return Parser<()>.unit(())
+    }
+    
 //    Functor
     public func map<U>(_ f: @escaping (T) throws -> U) -> Parser<U> {
         

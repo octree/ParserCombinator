@@ -40,3 +40,4 @@ public func choice<A>(_ sequence: [Parser<A>]) -> Parser<A> {
     
     return sequence.reduce(Parser.fail, <|>)
 }
+

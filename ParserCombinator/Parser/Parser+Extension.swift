@@ -59,6 +59,7 @@ public extension Parser {
         return many1 *> .ignore
     }
     
+    
 //    optional
     public var optional: Parser<T?> {
         return Parser<T?> {
@@ -107,6 +108,7 @@ public extension Parser {
         }
     }
     
+    
     public func sep<U>(by other: Parser<U>) -> Parser<[T]> {
         
         return sep1(by: other) <|> .unit([])
@@ -136,6 +138,11 @@ public extension Parser {
     public func many1<U>(till other: Parser<U>) -> Parser<[T]> {
         
         return difference(other).many1
+    }
+    
+    public func between<U, V>(open: Parser<U>, close: Parser<V>) -> Parser<T> {
+        
+        return open *> self <* close
     }
 }
 

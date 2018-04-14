@@ -38,28 +38,27 @@ let rightParentheses =  character { $0 == ")" }
 
 struct Interpreter {
     
-    
-    private var parentExpr: Parser<Int> {
+    private var parentExpr: Parser<Substring, Int> {
         
         return (leftParentheses >>- { _ in return self.expression })  <* rightParentheses
     }
     
-    private var item: Parser<Int> {
+    private var item: Parser<Substring, Int> {
         
         return integer <|> parentExpr
     }
     
-    private var multiplicationAndDivision: Parser<Int> {
+    private var multiplicationAndDivision: Parser<Substring, Int> {
         
         return item.chainl1(op: multiOp <|> divOp )
     }
     
-    private var additionAndSubtraction: Parser<Int> {
+    private var additionAndSubtraction: Parser<Substring, Int> {
         
         return multiplicationAndDivision.chainl1(op: addOp <|> subOp)
     }
     
-    private var expression: Parser<Int> {
+    private var expression: Parser<Substring, Int> {
         
         return additionAndSubtraction
     }

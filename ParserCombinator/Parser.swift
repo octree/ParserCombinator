@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FP
 
 public struct Parser<Stream, T> {
     

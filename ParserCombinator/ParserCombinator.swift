@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FP
 
 public func choice<A>(_ sequence: [Parser<Stream, A>]) -> Parser<Stream, A> {
     

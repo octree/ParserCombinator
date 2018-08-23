@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FP
 
 /// Functor Operator
 /// a -> b -> m a -> m b

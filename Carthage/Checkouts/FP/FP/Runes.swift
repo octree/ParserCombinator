@@ -1,3 +1,7 @@
+/// Runes.swift
+/// Infix operators for monadic functions in Swift
+/// source: https://github.com/thoughtbot/Runes
+
 precedencegroup RunesMonadicPrecedenceRight {
     associativity: right
     lowerThan: LogicalDisjunctionPrecedence

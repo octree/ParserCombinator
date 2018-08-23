@@ -12,6 +12,12 @@ import FP
 public struct Parser<Stream, T> {
     
     public let parse: (Stream) -> Reply<Stream, T>
+    
+    public init(parse: @escaping (Stream) -> Reply<Stream, T>) {
+        
+        self.parse = parse
+    }
+    
 }
 
 // Functor

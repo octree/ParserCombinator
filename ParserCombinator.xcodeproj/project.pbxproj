@@ -21,11 +21,18 @@
 		C2EC6E6C212EAB0E00C7438B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2EC6E6A212EAB0E00C7438B /* Main.storyboard */; };
 		C2EC6E6E212EAB0F00C7438B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2EC6E6D212EAB0F00C7438B /* Assets.xcassets */; };
 		C2EC6E71212EAB0F00C7438B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2EC6E6F212EAB0F00C7438B /* LaunchScreen.storyboard */; };
-		C2EC6E7C212EAB0F00C7438B /* DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EC6E7B212EAB0F00C7438B /* DemoTests.swift */; };
-		C2EC6E86212EAB5A00C7438B /* FP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2EC6E85212EAB5A00C7438B /* FP.framework */; };
 		C2EC6E87212EABC400C7438B /* ParserCombinator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2EC6E3A212EAA9F00C7438B /* ParserCombinator.framework */; };
 		C2EC6E88212EABC400C7438B /* ParserCombinator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C2EC6E3A212EAA9F00C7438B /* ParserCombinator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C2EC6E8C212EABDC00C7438B /* FP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2EC6E85212EAB5A00C7438B /* FP.framework */; };
+		C2F744CD213CD11600A32FEB /* FP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2EC6E85212EAB5A00C7438B /* FP.framework */; };
+		C2F744DB213CD25500A32FEB /* ParserCombinator.h in Headers */ = {isa = PBXBuildFile; fileRef = C2EC6E3D212EAA9F00C7438B /* ParserCombinator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C2F744DC213CD26300A32FEB /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EC6E56212EAAFC00C7438B /* Parser.swift */; };
+		C2F744DD213CD26300A32FEB /* Parser+Combinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EC6E59212EAAFD00C7438B /* Parser+Combinator.swift */; };
+		C2F744DE213CD26300A32FEB /* ParserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EC6E57212EAAFC00C7438B /* ParserError.swift */; };
+		C2F744DF213CD26300A32FEB /* ParserRunes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EC6E58212EAAFD00C7438B /* ParserRunes.swift */; };
+		C2F744E0213CD26300A32FEB /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EC6E54212EAAFC00C7438B /* Reply.swift */; };
+		C2F744E1213CD26300A32FEB /* SubstringParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EC6E55212EAAFC00C7438B /* SubstringParser.swift */; };
+		C2F744E2213CD4D500A32FEB /* FP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2F84F59213C4C5A002D33A5 /* FP.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,13 +42,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = C2EC6E39212EAA9F00C7438B;
 			remoteInfo = ParserCombinator;
-		};
-		C2EC6E78212EAB0F00C7438B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C2EC6E31212EAA9F00C7438B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C2EC6E63212EAB0E00C7438B;
-			remoteInfo = Demo;
 		};
 		C2EC6E89212EABC400C7438B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -86,10 +86,19 @@
 		C2EC6E6D212EAB0F00C7438B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C2EC6E70212EAB0F00C7438B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C2EC6E72212EAB0F00C7438B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C2EC6E77212EAB0F00C7438B /* DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C2EC6E7B212EAB0F00C7438B /* DemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoTests.swift; sourceTree = "<group>"; };
-		C2EC6E7D212EAB0F00C7438B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2EC6E85212EAB5A00C7438B /* FP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FP.framework; path = Carthage/Build/iOS/FP.framework; sourceTree = "<group>"; };
+		C2F744D3213CD19D00A32FEB /* ParserCombinator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParserCombinator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2F84F59213C4C5A002D33A5 /* FP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FP.framework; path = Carthage/Build/Mac/FP.framework; sourceTree = "<group>"; };
+		C2F84F5D213C4CF7002D33A5 /* FP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FP.framework; sourceTree = "<group>"; };
+		C2F84F5E213C4CF7002D33A5 /* 62F3A4F9-501F-329E-8AAC-03E937A1EAF4.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "62F3A4F9-501F-329E-8AAC-03E937A1EAF4.bcsymbolmap"; sourceTree = "<group>"; };
+		C2F84F5F213C4CF7002D33A5 /* 970D2982-9D5B-34BC-BC94-46D7D97FE240.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "970D2982-9D5B-34BC-BC94-46D7D97FE240.bcsymbolmap"; sourceTree = "<group>"; };
+		C2F84F60213C4CF7002D33A5 /* 076C00BD-F029-3975-A318-4CFB3D159A7B.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "076C00BD-F029-3975-A318-4CFB3D159A7B.bcsymbolmap"; sourceTree = "<group>"; };
+		C2F84F61213C4CF7002D33A5 /* ParserCombinator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParserCombinator.framework; sourceTree = "<group>"; };
+		C2F84F62213C4CF7002D33A5 /* ParserCombinator.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = ParserCombinator.framework.dSYM; sourceTree = "<group>"; };
+		C2F84F63213C4CF7002D33A5 /* FP.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = FP.framework.dSYM; sourceTree = "<group>"; };
+		C2F84F65213C4CF7002D33A5 /* FP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FP.framework; sourceTree = "<group>"; };
+		C2F84F66213C4CF7002D33A5 /* FP.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = FP.framework.dSYM; sourceTree = "<group>"; };
+		C2F84F67213C4CF7002D33A5 /* .FP.version */ = {isa = PBXFileReference; lastKnownFileType = text; path = .FP.version; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2EC6E86212EAB5A00C7438B /* FP.framework in Frameworks */,
+				C2F744CD213CD11600A32FEB /* FP.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,10 +127,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C2EC6E74212EAB0F00C7438B /* Frameworks */ = {
+		C2F744D0213CD19D00A32FEB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2F744E2213CD4D500A32FEB /* FP.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,7 +144,6 @@
 				C2EC6E3C212EAA9F00C7438B /* ParserCombinator */,
 				C2EC6E47212EAAA000C7438B /* ParserCombinatorTests */,
 				C2EC6E65212EAB0E00C7438B /* Demo */,
-				C2EC6E7A212EAB0F00C7438B /* DemoTests */,
 				C2EC6E3B212EAA9F00C7438B /* Products */,
 				C2EC6E84212EAB5900C7438B /* Frameworks */,
 			);
@@ -146,7 +155,7 @@
 				C2EC6E3A212EAA9F00C7438B /* ParserCombinator.framework */,
 				C2EC6E43212EAAA000C7438B /* ParserCombinatorTests.xctest */,
 				C2EC6E64212EAB0E00C7438B /* Demo.app */,
-				C2EC6E77212EAB0F00C7438B /* DemoTests.xctest */,
+				C2F744D3213CD19D00A32FEB /* ParserCombinator.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -188,21 +197,48 @@
 			path = Demo;
 			sourceTree = "<group>";
 		};
-		C2EC6E7A212EAB0F00C7438B /* DemoTests */ = {
-			isa = PBXGroup;
-			children = (
-				C2EC6E7B212EAB0F00C7438B /* DemoTests.swift */,
-				C2EC6E7D212EAB0F00C7438B /* Info.plist */,
-			);
-			path = DemoTests;
-			sourceTree = "<group>";
-		};
 		C2EC6E84212EAB5900C7438B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C2F84F5B213C4CF7002D33A5 /* Build */,
+				C2F84F59213C4C5A002D33A5 /* FP.framework */,
 				C2EC6E85212EAB5A00C7438B /* FP.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C2F84F5B213C4CF7002D33A5 /* Build */ = {
+			isa = PBXGroup;
+			children = (
+				C2F84F5C213C4CF7002D33A5 /* iOS */,
+				C2F84F64213C4CF7002D33A5 /* Mac */,
+				C2F84F67213C4CF7002D33A5 /* .FP.version */,
+			);
+			name = Build;
+			path = Carthage/Build;
+			sourceTree = "<group>";
+		};
+		C2F84F5C213C4CF7002D33A5 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				C2F84F5D213C4CF7002D33A5 /* FP.framework */,
+				C2F84F5E213C4CF7002D33A5 /* 62F3A4F9-501F-329E-8AAC-03E937A1EAF4.bcsymbolmap */,
+				C2F84F5F213C4CF7002D33A5 /* 970D2982-9D5B-34BC-BC94-46D7D97FE240.bcsymbolmap */,
+				C2F84F60213C4CF7002D33A5 /* 076C00BD-F029-3975-A318-4CFB3D159A7B.bcsymbolmap */,
+				C2F84F61213C4CF7002D33A5 /* ParserCombinator.framework */,
+				C2F84F62213C4CF7002D33A5 /* ParserCombinator.framework.dSYM */,
+				C2F84F63213C4CF7002D33A5 /* FP.framework.dSYM */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		C2F84F64213C4CF7002D33A5 /* Mac */ = {
+			isa = PBXGroup;
+			children = (
+				C2F84F65213C4CF7002D33A5 /* FP.framework */,
+				C2F84F66213C4CF7002D33A5 /* FP.framework.dSYM */,
+			);
+			path = Mac;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,6 +249,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2EC6E4B212EAAA000C7438B /* ParserCombinator.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2F744CE213CD19D00A32FEB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2F744DB213CD25500A32FEB /* ParserCombinator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,23 +318,23 @@
 			productReference = C2EC6E64212EAB0E00C7438B /* Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C2EC6E76212EAB0F00C7438B /* DemoTests */ = {
+		C2F744D2213CD19D00A32FEB /* ParserCombinator-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C2EC6E81212EAB0F00C7438B /* Build configuration list for PBXNativeTarget "DemoTests" */;
+			buildConfigurationList = C2F744D8213CD19E00A32FEB /* Build configuration list for PBXNativeTarget "ParserCombinator-macOS" */;
 			buildPhases = (
-				C2EC6E73212EAB0F00C7438B /* Sources */,
-				C2EC6E74212EAB0F00C7438B /* Frameworks */,
-				C2EC6E75212EAB0F00C7438B /* Resources */,
+				C2F744CE213CD19D00A32FEB /* Headers */,
+				C2F744CF213CD19D00A32FEB /* Sources */,
+				C2F744D0213CD19D00A32FEB /* Frameworks */,
+				C2F744D1213CD19D00A32FEB /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C2EC6E79212EAB0F00C7438B /* PBXTargetDependency */,
 			);
-			name = DemoTests;
-			productName = DemoTests;
-			productReference = C2EC6E77212EAB0F00C7438B /* DemoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
+			name = "ParserCombinator-macOS";
+			productName = "ParserCombinator-macOS";
+			productReference = C2F744D3213CD19D00A32FEB /* ParserCombinator.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -312,9 +356,8 @@
 					C2EC6E63212EAB0E00C7438B = {
 						CreatedOnToolsVersion = 10.0;
 					};
-					C2EC6E76212EAB0F00C7438B = {
+					C2F744D2213CD19D00A32FEB = {
 						CreatedOnToolsVersion = 10.0;
-						TestTargetID = C2EC6E63212EAB0E00C7438B;
 					};
 				};
 			};
@@ -334,7 +377,7 @@
 				C2EC6E39212EAA9F00C7438B /* ParserCombinator */,
 				C2EC6E42212EAAA000C7438B /* ParserCombinatorTests */,
 				C2EC6E63212EAB0E00C7438B /* Demo */,
-				C2EC6E76212EAB0F00C7438B /* DemoTests */,
+				C2F744D2213CD19D00A32FEB /* ParserCombinator-macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -364,7 +407,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C2EC6E75212EAB0F00C7438B /* Resources */ = {
+		C2F744D1213CD19D00A32FEB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -404,11 +447,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C2EC6E73212EAB0F00C7438B /* Sources */ = {
+		C2F744CF213CD19D00A32FEB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2EC6E7C212EAB0F00C7438B /* DemoTests.swift in Sources */,
+				C2F744E1213CD26300A32FEB /* SubstringParser.swift in Sources */,
+				C2F744DD213CD26300A32FEB /* Parser+Combinator.swift in Sources */,
+				C2F744E0213CD26300A32FEB /* Reply.swift in Sources */,
+				C2F744DE213CD26300A32FEB /* ParserError.swift in Sources */,
+				C2F744DF213CD26300A32FEB /* ParserRunes.swift in Sources */,
+				C2F744DC213CD26300A32FEB /* Parser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,11 +467,6 @@
 			isa = PBXTargetDependency;
 			target = C2EC6E39212EAA9F00C7438B /* ParserCombinator */;
 			targetProxy = C2EC6E45212EAAA000C7438B /* PBXContainerItemProxy */;
-		};
-		C2EC6E79212EAB0F00C7438B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C2EC6E63212EAB0E00C7438B /* Demo */;
-			targetProxy = C2EC6E78212EAB0F00C7438B /* PBXContainerItemProxy */;
 		};
 		C2EC6E8A212EABC400C7438B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -585,9 +628,23 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				"DYLIB_INSTALL_NAME_BASE[arch=*]" = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator*]" = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				"FRAMEWORK_SEARCH_PATHS[sdk=macosx*]" = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = ParserCombinator/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -596,12 +653,20 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = me.octree.parser.ParserCombinator;
+				"LD_RUNPATH_SEARCH_PATHS[sdk=*]" = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.octree.ParserCombinator;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,3,4";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -619,6 +684,19 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator*]" = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				"FRAMEWORK_SEARCH_PATHS[sdk=macosx*]" = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = ParserCombinator/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -627,11 +705,19 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = me.octree.parser.ParserCombinator;
+				"LD_RUNPATH_SEARCH_PATHS[sdk=*]" = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.octree.ParserCombinator;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,3,4";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -692,11 +778,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.octree.parser.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = "";
-				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "i386 x86_64 arm64 armv7 armv7s";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -719,53 +805,75 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.octree.parser.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = "";
-				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "i386 x86_64 arm64 armv7 armv7s";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
 		};
-		C2EC6E82212EAB0F00C7438B /* Debug */ = {
+		C2F744D9213CD19E00A32FEB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7A5GV3DH33;
-				INFOPLIST_FILE = DemoTests/Info.plist;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = ParserCombinator/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"@executable_path/Frameworks",
+					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = me.octree.parser.DemoTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = me.octree.ParserCombinator;
+				PRODUCT_NAME = ParserCombinator;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Demo.app/Demo";
 			};
 			name = Debug;
 		};
-		C2EC6E83212EAB0F00C7438B /* Release */ = {
+		C2F744DA213CD19E00A32FEB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7A5GV3DH33;
-				INFOPLIST_FILE = DemoTests/Info.plist;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = ParserCombinator/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"@executable_path/Frameworks",
+					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = me.octree.parser.DemoTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = me.octree.ParserCombinator;
+				PRODUCT_NAME = ParserCombinator;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Demo.app/Demo";
 			};
 			name = Release;
 		};
@@ -808,11 +916,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C2EC6E81212EAB0F00C7438B /* Build configuration list for PBXNativeTarget "DemoTests" */ = {
+		C2F744D8213CD19E00A32FEB /* Build configuration list for PBXNativeTarget "ParserCombinator-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C2EC6E82212EAB0F00C7438B /* Debug */,
-				C2EC6E83212EAB0F00C7438B /* Release */,
+				C2F744D9213CD19E00A32FEB /* Debug */,
+				C2F744DA213CD19E00A32FEB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -18,7 +18,7 @@ public enum Reply<In, Out> {
 
 public extension Reply {
     
-    public func map<U>(_ f: (Out) -> U) -> Reply<In, U> {
+    func map<U>(_ f: (Out) -> U) -> Reply<In, U> {
         
         switch self {
         case let .done(inv, out):
@@ -28,7 +28,7 @@ public extension Reply {
         }
     }
     
-    public func then<U>(_ f: (Out) -> Reply<In, U>) -> Reply<In, U> {
+    func then<U>(_ f: (Out) -> Reply<In, U>) -> Reply<In, U> {
         
         switch self {
         case let .done(_, out):
@@ -38,7 +38,7 @@ public extension Reply {
         }
     }
     
-    public func apply<U>(_ mf: Reply<In, (Out) -> U>) -> Reply<In, U> {
+    func apply<U>(_ mf: Reply<In, (Out) -> U>) -> Reply<In, U> {
         
         return mf.then(map)
     }

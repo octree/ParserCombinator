@@ -24,25 +24,25 @@ public struct Parser<Stream, T> {
 
 public extension Parser {
     
-    public static func unit(_ x: T) -> Parser<Stream, T> {
+    static func unit(_ x: T) -> Parser<Stream, T> {
         
         return Parser { .done($0, x) }
     }
     
-    public static var ignore: Parser<Stream, ()> {
+    static var ignore: Parser<Stream, ()> {
         
         return .unit(())
     }
     
 //    Functor
-    public func map<U>(_ f: @escaping (T) -> U) -> Parser<Stream, U> {
+    func map<U>(_ f: @escaping (T) -> U) -> Parser<Stream, U> {
         
         return Parser<Stream, U> { self.parse($0).map(f) }
     }
     
     
 //    Monad
-    public func then<U>(_ f: @escaping (T) -> Parser<Stream, U>) -> Parser<Stream, U> {
+    func then<U>(_ f: @escaping (T) -> Parser<Stream, U>) -> Parser<Stream, U> {
         
         return Parser<Stream, U> {
             
@@ -56,7 +56,7 @@ public extension Parser {
     }
     
 //    Applicative
-    public func apply<U>(_ mf: Parser<Stream, (T) -> U>) -> Parser<Stream, U> {
+    func apply<U>(_ mf: Parser<Stream, (T) -> U>) -> Parser<Stream, U> {
         
         return mf.then(map)
     }

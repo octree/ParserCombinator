@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1000"
+   LastUpgradeVersion = "1020"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C2F744D2213CD19D00A32FEB"
-               BuildableName = "ParserCombinator_macOS.framework"
+               BuildableName = "ParserCombinator.framework"
                BlueprintName = "ParserCombinator-macOS"
                ReferencedContainer = "container:ParserCombinator.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C2F744D2213CD19D00A32FEB"
-            BuildableName = "ParserCombinator_macOS.framework"
+            BuildableName = "ParserCombinator.framework"
             BlueprintName = "ParserCombinator-macOS"
             ReferencedContainer = "container:ParserCombinator.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C2F744D2213CD19D00A32FEB"
-            BuildableName = "ParserCombinator_macOS.framework"
+            BuildableName = "ParserCombinator.framework"
             BlueprintName = "ParserCombinator-macOS"
             ReferencedContainer = "container:ParserCombinator.xcodeproj">
          </BuildableReference>

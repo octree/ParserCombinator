@@ -17,7 +17,7 @@ public func choice<A>(_ sequence: [Parser<Stream, A>]) -> Parser<Stream, A> {
 public extension Parser {
     
 //    just fail
-    public static var fail: Parser<Stream, T> {
+    static var fail: Parser<Stream, T> {
         return Parser<Stream, T> {
             _ in
             return .fail(ParserError.any)
@@ -25,7 +25,7 @@ public extension Parser {
     }
     
     ///  执行 parse，但是不会改变 input
-    public var lookAhead: Parser<Stream, T> {
+    var lookAhead: Parser<Stream, T> {
 
         return Parser<Stream, T> {
             let reply = self.parse($0)
@@ -39,7 +39,7 @@ public extension Parser {
     }
     
 //    many, maybe empty
-    public var many: Parser<Stream, [T]> {
+    var many: Parser<Stream, [T]> {
         
         return Parser<Stream, [T]> {
             input in
@@ -59,24 +59,24 @@ public extension Parser {
     
 // many, as leat 1
     
-    public var many1: Parser<Stream, [T]> {
+    var many1: Parser<Stream, [T]> {
         
         return curry({ x, y in [x] + y }) <^> self <*> many
     }
     
-    public var skipMany: Parser<Stream, ()> {
+    var skipMany: Parser<Stream, ()> {
         
         return many *> .ignore
     }
     
-    public var skipMany1: Parser<Stream, ()> {
+    var skipMany1: Parser<Stream, ()> {
         
         return many1 *> .ignore
     }
     
     
 //    optional
-    public var optional: Parser<Stream, T?> {
+    var optional: Parser<Stream, T?> {
         return Parser<Stream, T?> {
             
             switch self.parse($0) {
@@ -88,13 +88,13 @@ public extension Parser {
         }
     }
     
-    public func otherwise(_ v: T) -> Parser<Stream, T> {
+    func otherwise(_ v: T) -> Parser<Stream, T> {
         
         return self <|> .unit(v)
     }
     
 //    差集
-    public func difference<U>(_ other: Parser<Stream, U>) -> Parser<Stream, T> {
+    func difference<U>(_ other: Parser<Stream, U>) -> Parser<Stream, T> {
         
         return Parser<Stream, T> {
             if case .done(_) = other.parse($0) {
@@ -104,12 +104,12 @@ public extension Parser {
         }
     }
     
-    public func followed<U>(by other: Parser<Stream, U>) -> Parser<Stream, (T, U)> {
+    func followed<U>(by other: Parser<Stream, U>) -> Parser<Stream, (T, U)> {
         
         return curry({ x, y in (x, y) }) <^> self <*> other
     }
     
-    public func `repeat`(_ n: Int) -> Parser<Stream, [T]> {
+    func `repeat`(_ n: Int) -> Parser<Stream, [T]> {
         
         return Parser<Stream, [T]> {
             
@@ -128,50 +128,50 @@ public extension Parser {
     }
     
     
-    public func sep<U>(by other: Parser<Stream, U>) -> Parser<Stream, [T]> {
+    func sep<U>(by other: Parser<Stream, U>) -> Parser<Stream, [T]> {
         
         return sep1(by: other) <|> .unit([])
     }
     
-    public func sep1<U>(by other: Parser<Stream, U>) -> Parser<Stream, [T]> {
+    func sep1<U>(by other: Parser<Stream, U>) -> Parser<Stream, [T]> {
         
         return curry({ [$0] + $1 }) <^> self <*>  (other *> self).many
     }
     
-    public func end<U>(by other: Parser<Stream, U>) -> Parser<Stream, [T]> {
+    func end<U>(by other: Parser<Stream, U>) -> Parser<Stream, [T]> {
         
         return many <* other
     }
     
-    public func end1<U>(by other: Parser<Stream, U>) -> Parser<Stream, [T]> {
+    func end1<U>(by other: Parser<Stream, U>) -> Parser<Stream, [T]> {
         
         return many1 <* other
     }
     
 ///   separated and optionally ended by sep
 ///   EBNF: (p (sep p)* sep?)?
-    public func sepEnd<U>(by other: Parser<Stream, U>) -> Parser<Stream, [T]> {
+    func sepEnd<U>(by other: Parser<Stream, U>) -> Parser<Stream, [T]> {
         
         return sep1(by: other) <|> .unit([])
     }
 ///   separated and optionally ended by sep
 ///   EBNF: p (sep p)* sep?
-    public func sepEnd1<U>(by other: Parser<Stream, U>) -> Parser<Stream, [T]> {
+    func sepEnd1<U>(by other: Parser<Stream, U>) -> Parser<Stream, [T]> {
         
         return sep1(by: other) <* other.optional
     }
     
-    public func many<U>(till other: Parser<Stream, U>) -> Parser<Stream, [T]> {
+    func many<U>(till other: Parser<Stream, U>) -> Parser<Stream, [T]> {
         
         return difference(other).many
     }
     
-    public func many1<U>(till other: Parser<Stream, U>) -> Parser<Stream, [T]> {
+    func many1<U>(till other: Parser<Stream, U>) -> Parser<Stream, [T]> {
         
         return difference(other).many1
     }
     
-    public func between<U, V>(open: Parser<Stream, U>, close: Parser<Stream, V>) -> Parser<Stream, T> {
+    func between<U, V>(open: Parser<Stream, U>, close: Parser<Stream, V>) -> Parser<Stream, T> {
         
         return open *> self <* close
     }
@@ -182,7 +182,7 @@ public extension Parser {
     ///
     /// - Parameter op: op parser
     /// - Returns: parser
-    public func chainl1(op: Parser<Stream, (T, T) -> T>) -> Parser<Stream, T> {
+    func chainl1(op: Parser<Stream, (T, T) -> T>) -> Parser<Stream, T> {
 
         func f(_ lhs: T) -> Parser<Stream, T> {
             
@@ -197,7 +197,7 @@ public extension Parser {
     }
     
     
-    public func chainr1(op: Parser<Stream, (T, T) -> T>) -> Parser<Stream, T> {
+    func chainr1(op: Parser<Stream, (T, T) -> T>) -> Parser<Stream, T> {
         
         func scan() -> Parser<Stream, T> {
             
